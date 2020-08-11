@@ -51,7 +51,7 @@ REQS_BASE = [
     # celery background task monitor which uses the django DB
     'django-celery-beat>=1.3.0',
     # ======== DRF =========
-    'djangorestframework>=3.7.3',
+    'djangorestframework>=3.11.1',
     # login support for DRF through restful endpoints
     'django-rest-auth>=0.9.1',
     # pluggable social auth for django login
@@ -62,6 +62,8 @@ REQS_BASE = [
     'django-filter>=1.1.0',
     # Provides REST API schema
     'coreapi>=2.2.3',
+    # Provides Swagger API frontend
+    'drf-yasg==1.17.1',
     # ======== CloudBridge =========
     'cloudbridge',
     'djcloudbridge',
