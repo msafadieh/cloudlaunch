@@ -17,7 +17,8 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include
 from django.conf.urls import url
-from rest_framework.schemas import get_schema_view
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
 from . import views
 
@@ -52,8 +53,11 @@ infrastructure_regex_pattern = r'^api/v1/infrastructure/'
 auth_regex_pattern = r'^api/v1/auth/'
 public_services_regex_pattern = r'^api/v1/public_services/'
 
-schema_view = get_schema_view(title='CloudLaunch API', url=settings.REST_SCHEMA_BASE_URL,
-                              urlconf='cloudlaunch.urls')
+schema_view = get_schema_view(
+        openapi.Info(title='CloudLaunch API', default_version="v1"),
+        urlconf='cloudlaunch.urls',
+        url=settings.REST_SCHEMA_BASE_URL,
+)
 
 registration_urls = [
     url(r'^$', views.CustomRegisterView.as_view(), name='rest_register'),
@@ -85,7 +89,7 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     # Public services
     url(public_services_regex_pattern, include('public_appliances.urls')),
-    url(r'^api/v1/schema/$', schema_view),
+    url(r'^api/v1/schema/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^image-autocomplete/$', views.ImageAutocomplete.as_view(),
         name='image-autocomplete',
     )

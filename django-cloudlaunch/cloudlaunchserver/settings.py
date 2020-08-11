@@ -106,7 +106,8 @@ INSTALLED_APPS = [
     'django_countries',
     'django_filters',
     'polymorphic',
-    'cloudlaunchserver'
+    'cloudlaunchserver',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
