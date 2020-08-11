@@ -56,7 +56,6 @@ public_services_regex_pattern = r'^api/v1/public_services/'
 schema_view = get_schema_view(
         openapi.Info(title='CloudLaunch API', default_version="v1"),
         urlconf='cloudlaunch.urls',
-        url=settings.REST_SCHEMA_BASE_URL,
 )
 
 registration_urls = [
